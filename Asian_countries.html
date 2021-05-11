@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //CREATE a REQUEST INSTANCE
+        var req = new XMLHttpRequest(); // new keyword constructs and returns an object (instance) of a constructor function
+        //initiate a connection or create a new connection.
+        req.open('GET', 'https://restcountries.eu/rest/v2/all', true); //true is for API should not affect the rest part.
+        //sending the request
+        req.send();
+        //load the function
+        //this function will be triggered only when the data has been received sucessfully;
+        req.onload = function() {
+            var data = JSON.parse(this.response); //response is predefined return
+            var result = data.filter(e => e.region === "Asia");
+            for (i in result) {
+                console.log(result[i].name);
+            }
+        }
+    </script>
+</body>
+
+</html>
